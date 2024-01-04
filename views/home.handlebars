@@ -3,8 +3,10 @@
 <h2>Bienvenido usuario</h2>
 <p>Nombre: {{firstName}}</p>
 <p>Apellido: {{lastName}}</p>
-<p>Correo electrónico: {{email}}</p>
+<p id="email">Correo electrónico: {{email}}</p>
+{{#if rol}}
 <p>Rol: {{rol}}</p>
+{{/if}}
 <form>
     <button type="submit">Logout</button>
 </form>

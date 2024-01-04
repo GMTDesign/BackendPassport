@@ -14,7 +14,7 @@ registryForm.addEventListener('submit', async ev => {
     if (response.status === 201) {
         const { payload: user } = await response.json()
         alert(JSON.stringify(user.email) + ' se registro con éxito')
-        window.location.href = '/login'
+        window.location.href = '/profile'
     } else {
         const error = await response.json()
         alert('Error: ' + error.message)

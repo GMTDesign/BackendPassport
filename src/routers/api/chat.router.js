@@ -4,4 +4,5 @@ import { getController, postController } from "../../controllers/messageControll
 export const chatRouter = Router()
 
 chatRouter.get('/chat', getController)
+
 chatRouter.post('/chat', postController)

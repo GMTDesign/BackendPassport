@@ -37,7 +37,7 @@ app.use('/api', apiRouter)
 serverSocket.on('connection', async (socket) => {
     
     socket.on('newProduct', async (id) => {
-        console.log(id)
+
         cartManager.create({products: [{product: id}]})
       
     })

@@ -5,9 +5,9 @@ import { equalHashed } from "../../utils/cryptography.js"
 const User = new mongoose.Schema({
     _id: { type: String, default: randomUUID },
     firstName: { type: String, require: true},
-    lastName: { type: String, require: true},
-    email: { type: String, unique: true, require: true},
-    password: { type: String, require: true}
+    lastName: { type: String, default: '(no especificado)'},
+    email: { type: String, unique: true, required: true},
+    password: { type: String, default: ('no especificada')}
 }, {
     strict: 'throw',
     versionKey: false,
@@ -22,7 +22,7 @@ const User = new mongoose.Schema({
                     rol: 'admin'
                 }
             } else {
-                const user = await model('users').findOne({ email }).lean()
+                const user = await mongoose.model('users').findOne({ email }).lean()
                 if (!user) {
                     throw new Error('Login incorrecto')
                 }

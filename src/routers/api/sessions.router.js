@@ -1,28 +1,14 @@
 import { Router } from "express"
-import { deleteController, postController } from "../../controllers/sessionsControllers.js"
-import { userManager } from "../../dao/models/User.js"
+import { deleteController } from "../../controllers/sessionsControllers.js"
+import passport from "passport"
 
 
 export const sessionsRouter = Router()
 
-sessionsRouter.post('/',
-    async (req, res, next) => {
-        const { email, password } = req.body
-        console.log(req.body)
-        try {
-            const userData = await userManager.login(email, password)
-            req.login(userData, (error => {
-                if (error) {
-                    next(error)
-                } else {
-                    next()
-                }
-            }))
-            next()
-        } catch (error) {
-            next(error)
-        }
-    },
+sessionsRouter.post('/', 
+    passport.authenticate('localLogin', {
+        failWithError: true
+    }),
     async (req, res, next) => {
         res.status(201).json({ status: 'success', message: 'Login exitoso!' })
     },

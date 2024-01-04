@@ -1,9 +1,3 @@
-import { userManager } from "../dao/models/User.js"
-
-export async function postController(req, res) {
-    
-}
-
 export async function deleteController(req, res) {
     req.session.destroy(error => {
         if (error) {

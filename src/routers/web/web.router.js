@@ -1,10 +1,12 @@
 import { Router } from "express"
 import { cartManager, productManager } from "../../dao/mongoDB/mongoDB.js"
 import { onlyActives } from "../../middlewares/activeSession.js"
+import passport from "passport"
 
 export const webRouter = Router()
 
 webRouter.get('/home', async (req, res) => {
+
     const parameters = {}
     if (req.query.category) { parameters.category = req.query.category }
     if (req.query.status) { parameters.status = req.query.status}
@@ -59,6 +61,15 @@ webRouter.get('/register', (req, res) => {
 webRouter.get('/login', (req, res) => {
     res.render('login.handlebars')
 })
+
+
+
+webRouter.get('/githublogin', passport.authenticate('githubLogin'))
+webRouter.get('/githubcallback', passport.authenticate('githubLogin', {
+    successRedirect: '/home',
+    failureRedirect: '/login'
+}))
+
 
 
 webRouter.get('/profile', onlyActives, (req, res) => {

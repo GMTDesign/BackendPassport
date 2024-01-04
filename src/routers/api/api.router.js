@@ -9,7 +9,11 @@ import { sessionsRouter } from "./sessions.router.js";
 export const apiRouter = Router()
 
 apiRouter.use('/', productsRouter)
+
 apiRouter.use('/', cartsRouter)
+
 apiRouter.use('/', chatRouter)
+
 apiRouter.use('/sessions', sessionsRouter)
+
 apiRouter.use('/users', usersRouter)

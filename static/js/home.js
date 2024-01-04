@@ -1,6 +1,7 @@
 const socket = io('http://localhost:8080')
 
 const prodId = document.querySelectorAll(".btn-primary")
+const dato = document.getElementById('email')
 
 prodId.forEach(prod => {
     prod.addEventListener("click", (ev) => {

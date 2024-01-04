@@ -10,7 +10,7 @@ loginForm.addEventListener('submit', async ev => {
 
     if (response.status === 201) {
         const session = await response.json()
-        //const user = JSON.stringify(session.payload.email)
+        const user = JSON.stringify(session)
         alert('Bienvenido!')
         window.location.href = '/home'
     } else {
