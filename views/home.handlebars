@@ -1,11 +1,18 @@
 <h2>Productos</h2>
 {{#if email}}
 <h2>Bienvenido usuario</h2>
-<p>Nombre: {{firstName}}</p>
+
+<p>Nombre: <span id="firstName">{{firstName}}</span></p>
+<p>Apellido: <span id="lastName">{{lastName}}</span></p>
+<p>Correo electrónico: <span id="email">{{email}}</span></p>
+
+
+
+{{!-- <p>Nombre: {{firstName}}</p>
 <p>Apellido: {{lastName}}</p>
-<p id="email">Correo electrónico: {{email}}</p>
+<p class="email" id={{email}}>Correo electrónico: {{email}}</p> --}}
 {{#if rol}}
-<p>Rol: {{rol}}</p>
+<p>Rol: <span id="rol">{{rol}}</span></p>
 {{/if}}
 <form>
     <button type="submit">Logout</button>

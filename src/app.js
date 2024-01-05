@@ -36,9 +36,15 @@ app.use('/api', apiRouter)
 
 serverSocket.on('connection', async (socket) => {
     
-    socket.on('newProduct', async (id) => {
-
-        cartManager.create({products: [{product: id}]})
+    socket.on('newProduct', async (pid, email) => {
+        console.log(pid)
+        console.log(email)
+        const clientCart = await cartManager.findOne({clientEmail: email})
+      
+        const updatedCart = await cartManager.findById(clientCart._id)
+        updatedCart.addProduct(pid)
+        console.log(updatedCart)
+       
       
     })
     // chat sockets

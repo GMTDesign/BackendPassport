@@ -5,11 +5,10 @@ const dato = document.getElementById('email')
 
 prodId.forEach(prod => {
     prod.addEventListener("click", (ev) => {
-               
-        socket.emit('newProduct', ev.target.id)
+        socket.emit('newProduct', ev.target.id, dato.innerHTML)
     })
 })
-
+   
 const logoutForm = document.querySelector('form')
 
 logoutForm?.addEventListener('submit', async ev => {
