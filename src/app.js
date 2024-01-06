@@ -36,17 +36,14 @@ app.use('/api', apiRouter)
 
 serverSocket.on('connection', async (socket) => {
     
-    socket.on('newProduct', async (pid, email) => {
-        console.log(pid)
-        console.log(email)
-        const clientCart = await cartManager.findOne({clientEmail: email})
-      
-        const updatedCart = await cartManager.findById(clientCart._id)
-        updatedCart.addProduct(pid)
-        console.log(updatedCart)
-       
-      
+    //RECIBO EL ID DEL PRODUCTO Y DEL USUARIO 
+    //BUSCO EL CARRITO ASOCIADO AL USUARIO
+    //AGREGO EL PRODUCTO
+    socket.on('newProduct', async (pid, user_id) => {
+        const clientCart = await cartManager.findOne({clientId: user_id})      
+        clientCart.addProduct(pid)
     })
+
     // chat sockets
     serverSocket.emit('messages', await messageManager.find())
     socket.broadcast.emit('newUser', 'Nuevo usuario')

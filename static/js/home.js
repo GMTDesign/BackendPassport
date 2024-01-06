@@ -1,11 +1,12 @@
 const socket = io('http://localhost:8080')
 
 const prodId = document.querySelectorAll(".btn-primary")
-const dato = document.getElementById('email')
+//OBTENEMOS EL ID DEL USUARIO
+const user_id = document.getElementById('user_id').innerHTML
 
 prodId.forEach(prod => {
     prod.addEventListener("click", (ev) => {
-        socket.emit('newProduct', ev.target.id, dato.innerHTML)
+        socket.emit('newProduct', ev.target.id, user_id) //ENVIAMOS EL ID DEL USUARIO
     })
 })
    
