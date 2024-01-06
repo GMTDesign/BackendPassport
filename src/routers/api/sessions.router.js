@@ -12,7 +12,8 @@ sessionsRouter.post('/',
     }),
     async (req, res, next) => {
         res.status(201).json({ status: 'success', message: 'Login exitoso!' })
-        await cartManager.create({clientEmail: req.body.email, products: []})
+        // YA SE IMPLEMENTA ESTA LOGICA EN LA CREACI0N DEL USUARIO
+        // await cartManager.create({clientId: req.body.email, products: []})
     },
     (error, req, res, next) => {
         res.status(401).json({ status: 'error', message: error.message })

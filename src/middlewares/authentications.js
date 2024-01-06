@@ -2,6 +2,7 @@ import passport from "passport"
 import { Strategy as LocalStrategy } from "passport-local"
 import { Strategy as GitHubStrategy } from "passport-github2"
 import { userManager } from "../dao/models/User.js"
+import { cartManager } from '../dao/models/Cart.js'
 
 const localLogin = new LocalStrategy({
     usernameField: 'email'
@@ -32,6 +33,8 @@ passport.use('githubLogin', new GitHubStrategy({
             firstName: gitHubUser.displayName,
             email: gitHubUser.username
         })
+        //SI SE REGISTRA CON GITHUB SE LE CREA EL CARRITO POR ACA
+        await cartManager.create({products: [], clientId: user._id})
     }
     done(null, user.toObject())
 }))

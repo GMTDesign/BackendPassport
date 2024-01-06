@@ -30,12 +30,14 @@ const User = new mongoose.Schema({
                 if (!equalHashed(password, user.password)) {
                     throw new Error('la contraseña es incorrecta')
                 }
-        
+                //GUARDAMOS EN LA COOKIE EL ID DEL USUARIO
+                //ESTO EVITA IR A BUSCARLO A LA BASE DE DATOS
                 userData = {
                     firstName: user['firstName'],
                     lastName: user['lastName'],
                     email: user['email'],
-                    rol: 'usuario'
+                    rol: 'usuario',
+                    id: user['_id']
                 }
             }
             return userData

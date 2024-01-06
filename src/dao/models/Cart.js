@@ -1,10 +1,10 @@
 import { Schema, model } from "mongoose";
 import { randomUUID } from 'crypto'
-import { type } from "os";
 
 const Cart = new Schema({
     _id: { type: String, default: randomUUID },
-    clientEmail: {type: String},
+    //ACA LE ASOCIAMOS EL ID DEL USUARIO PARA BUSCARLO
+    clientId: {type: String},
     products: {
         type: [{
             product: {type: String, ref: 'products'},
